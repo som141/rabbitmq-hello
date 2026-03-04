@@ -19,7 +19,7 @@ public class HelloController {
         rabbitTemplate.convertAndSend(
                 RabbitMQConfig.EXCHANGE_NAME,"hello.key.1",message);
 
-        return "Message sent: "+ message;
+        return "Message sends: "+ message;
 
     }
 
