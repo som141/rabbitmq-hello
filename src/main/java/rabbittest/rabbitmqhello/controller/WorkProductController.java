@@ -18,7 +18,7 @@ public class WorkProductController {
     private final RabbitTemplate rabbitTemplate;
 
     @PostMapping("work/request-image-resize")
-    public void requestImageResize(@RequestParam String fileName){
+    public String requestImageResize(@RequestParam String fileName){
         log.info("request = "+fileName);
 
         for(int i=0;i<3;i++){
@@ -35,7 +35,11 @@ public class WorkProductController {
                     RabbitMQConfig.ROUTING_KEY,
                     imageTaskDto
             );
+
+            log.info("Task published to queue!! {}",imageTaskDto);
         }
+
+        return "3 image resize tasks have been successfully requested.";
     }
 
 }
