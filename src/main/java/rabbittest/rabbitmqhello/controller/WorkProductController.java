@@ -32,8 +32,9 @@ public class WorkProductController {
 
             rabbitTemplate.convertAndSend(
                     RabbitMQConfig.EXCHANGE_NAME,
-                    RabbitMQConfig.ROUTING_KEY
-            )
+                    RabbitMQConfig.ROUTING_KEY,
+                    imageTaskDto
+            );
         }
     }
 
