@@ -6,6 +6,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import rabbittest.rabbitmqhello.config.DeadLetterQueueConfig;
 import rabbittest.rabbitmqhello.config.RabbitMQConfig;
 import rabbittest.rabbitmqhello.dto.ImageTaskDto;
 
@@ -31,8 +32,8 @@ public class WorkProductController {
             );
 
             rabbitTemplate.convertAndSend(
-                    RabbitMQConfig.EXCHANGE_NAME,
-                    RabbitMQConfig.ROUTING_KEY,
+                    DeadLetterQueueConfig.WORK_EXCHAGE,
+                    DeadLetterQueueConfig.WORK_ROUTING_KEY,
                     imageTaskDto
             );
 
